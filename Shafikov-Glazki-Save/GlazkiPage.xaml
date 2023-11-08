@@ -9,6 +9,83 @@
       Title="GlazkiPage">
 
     <Grid>
-        <Button Content="Вперед" Click="Button_Click"></Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left">
+            <StackPanel Margin="10" Orientation="Horizontal">
+                <TextBox Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"
+                         Width="300" FontSize="15"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <ComboBox Name="ComboSort" SelectionChanged="ComboSort_SelectionChanged"
+                          FontSize="15" Width="200">
+                    <TextBlock>Сортировка</TextBlock>
+                    <TextBlock>Наименование по возрастанию</TextBlock>
+                    <TextBlock>Наименование по убыванию</TextBlock>
+                    <TextBlock>Скидка по возрастанию</TextBlock>
+                    <TextBlock>Скидка по убыванию</TextBlock>
+                    <TextBlock>Приоритет по возрастанию</TextBlock>
+                    <TextBlock>Наименование по убыванию</TextBlock>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <ComboBox Name="ComboType" SelectionChanged="ComboType_SelectionChanged"
+              FontSize="15" Width="200">
+                    <TextBlock>Все типы</TextBlock>
+                    <TextBlock>МФО</TextBlock>
+                    <TextBlock>ООО</TextBlock>
+                    <TextBlock>ЗАО</TextBlock>
+                    <TextBlock>МКК</TextBlock>
+                    <TextBlock>ОАО</TextBlock>
+                    <TextBlock>ПАО</TextBlock>
+                </ComboBox>
+            </StackPanel>
+        </WrapPanel>
+        <ListView Name="GlazkiListView" Grid.Row="2">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Width="100" Grid.Column="0" Stretch="UniformToFill" HorizontalAlignment="Center">
+                            <Image.Source>
+                                <Binding Path="MainImagePath">
+                                    <Binding.TargetNullValue>
+                                        <ImageSource>
+                                            Images\Глазки-save.png
+                                        </ImageSource>
+                                    </Binding.TargetNullValue>
+                                </Binding>
+                            </Image.Source>
+                        </Image>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0">
+                            <TextBlock Text="{Binding AgentTypeString}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+                            <TextBlock Text=" | " FontSize="20"></TextBlock>
+                            <TextBlock Text="{Binding Title}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" FontSize="20"></TextBlock>
+                        </StackPanel>
+                        <TextBlock Text="%" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" FontSize="20"></TextBlock>
+                        <TextBlock Text ="Количество продаж" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="16"></TextBlock>
+                        <TextBlock Text ="{Binding Phone}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="16"></TextBlock>
+                        <TextBlock Text ="{Binding Priority, StringFormat=Приоритетность: {0}}" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" FontSize="16"></TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!--<Button Content="Вперед" Click="Button_Click"></Button>-->
     </Grid>
 </Page>

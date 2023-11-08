@@ -35,8 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,6 +64,60 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Agent.cs">
+      <DependentUpon>ShafikovModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AgentPriorityHistory.cs">
+      <DependentUpon>ShafikovModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AgentType.cs">
+      <DependentUpon>ShafikovModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Material.cs">
+      <DependentUpon>ShafikovModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialCountHistory.cs">
+      <DependentUpon>ShafikovModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialType.cs">
+      <DependentUpon>ShafikovModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Product.cs">
+      <DependentUpon>ShafikovModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductCostHistory.cs">
+      <DependentUpon>ShafikovModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductMaterial.cs">
+      <DependentUpon>ShafikovModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductSale.cs">
+      <DependentUpon>ShafikovModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductType.cs">
+      <DependentUpon>ShafikovModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShafikovModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShafikovModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShafikovModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShafikovModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShafikovModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShafikovModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Shop.cs">
+      <DependentUpon>ShafikovModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier.cs">
+      <DependentUpon>ShafikovModel.tt</DependentUpon>
+    </Compile>
     <Page Include="AddEditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -101,9 +164,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <EntityDeploy Include="ShafikovModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ShafikovModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ShafikovModel.edmx.diagram">
+      <DependentUpon>ShafikovModel.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +183,21 @@
   <ItemGroup>
     <Resource Include="Images\Глазки-save.ico" />
     <Resource Include="Images\Глазки-save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ShafikovModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ShafikovModel.Context.cs</LastGenOutput>
+      <DependentUpon>ShafikovModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="ShafikovModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ShafikovModel.edmx</DependentUpon>
+      <LastGenOutput>ShafikovModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
