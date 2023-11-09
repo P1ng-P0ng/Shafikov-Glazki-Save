@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Shafikov_Glazki_Save"
         mc:Ignorable="d"
-        Title="Shafikov-Glazki" MinHeight="450" MinWidth="800" FontFamily="Tw Cen MT" Icon="Images\Глазки-save.ico">
+        Title="Shafikov-Glazki" MinHeight="450" MinWidth="1000" FontFamily="Tw Cen MT" Icon="Images\Глазки-save.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75"/>
@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
         <Border Grid.Row="0" Background="#FFE9F9"></Border>
         <Image Source="Images\Глазки-save.png" HorizontalAlignment="Left"></Image>
-        <TextBlock Text="Глазки" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Text="Список агентов" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
         <Frame Grid.Row="1" Name="MainFrame" ContentRendered="MainFrame_ContentRendered" NavigationUIVisibility="Hidden"></Frame>
         <Button Content="Назад" Name="BtnBack" HorizontalAlignment="Right" Click="BtnBack_Click"></Button>
     </Grid>
