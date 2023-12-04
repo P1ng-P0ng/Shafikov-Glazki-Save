@@ -11,7 +11,11 @@ namespace Shafikov_Glazki_Save
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Data;
+    using System.Data.SqlClient;
+    using System.Windows.Documents;
+    using System.Windows;
+
     public partial class ProductSale
     {
         public int ID { get; set; }
@@ -22,5 +26,21 @@ namespace Shafikov_Glazki_Save
     
         public virtual Agent Agent { get; set; }
         public virtual Product Product { get; set; }
+
+        public string ProductTitleString
+        {
+            get
+            {
+                return Product.Title;
+            }
+        }
+
+        /*public int ProductIndex
+        {
+            get
+            {
+                return Product.ID;
+            }
+        }*/
     }
 }

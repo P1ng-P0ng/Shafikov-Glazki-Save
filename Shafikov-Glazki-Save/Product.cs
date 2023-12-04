@@ -39,5 +39,13 @@ namespace Shafikov_Glazki_Save
         public virtual ICollection<ProductMaterial> ProductMaterial { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductSale> ProductSale { get; set; }
+
+        //public string ProductTypeString
+        //{
+        //    get
+        //    {
+        //        return ProductType.Title;
+        //    }
+        //}
     }
 }

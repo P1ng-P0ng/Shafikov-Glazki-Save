@@ -26,6 +26,8 @@ namespace Shafikov_Glazki_Save
 
         List<Agent> CurrentPageList = new List<Agent>();
         List<Agent> TableList;
+
+        List<int> SelectPriority = new List<int>();
         public GlazkiPage()
         {
             InitializeComponent();
@@ -57,11 +59,11 @@ namespace Shafikov_Glazki_Save
             }
             if (ComboSort.SelectedIndex == 3)
             {
-                
+                currentGlazki = currentGlazki.OrderBy(p => p.SalePercent).ToList();
             }
             if (ComboSort.SelectedIndex == 4)
             {
-                
+                currentGlazki = currentGlazki.OrderByDescending(p => p.SalePercent).ToList();
             }
             if (ComboSort.SelectedIndex == 5)
             {
@@ -240,6 +242,60 @@ namespace Shafikov_Glazki_Save
                 Shafikov_GlazkiEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
                 GlazkiListView.ItemsSource = Shafikov_GlazkiEntities.GetContext().Agent.ToList();
             }
+            UpdateGlazki();
+        }
+
+        private void PriorityButton_Click(object sender, RoutedEventArgs e)
+        {
+            int max_priority = 0;
+            foreach (Agent agentPriority in GlazkiListView.SelectedItems)
+            {
+                if (max_priority < agentPriority.Priority) 
+                    max_priority = agentPriority.Priority;
+            }
+
+            PriorityEdit priorityEdit = new PriorityEdit(max_priority);
+            priorityEdit.ShowDialog();   
+
+            if(string.IsNullOrEmpty(priorityEdit.PriorityBox.Text))
+            {
+                return;
+            }
+            if (!string.IsNullOrWhiteSpace(priorityEdit.PriorityBox.Text) && Convert.ToInt32(priorityEdit.PriorityBox.Text) > 0 && priorityEdit.CheckClick == true)
+            {
+
+                foreach (Agent agentPriority in GlazkiListView.SelectedItems)
+                {
+                    agentPriority.Priority = Convert.ToInt32(priorityEdit.PriorityBox.Text);
+                }
+                try
+                {
+                    Shafikov_GlazkiEntities.GetContext().SaveChanges();
+                    MessageBox.Show("Информация сохранена");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
+            UpdateGlazki();
+        }
+
+        private void GlazkiListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (GlazkiListView.SelectedItems.Count > 1)
+            {          
+                PriorityButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                PriorityButton.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void ProdViewButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new ProdPage((sender as Button).DataContext as Agent));
             UpdateGlazki();
         }
 
